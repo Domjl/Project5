@@ -28,7 +28,7 @@ public:
 	virtual void setBookType( int ) = 0; // set book type
 	virtual int getBooktype() const = 0; // get booktype
 
-	virtual display();
+	virtual print();
 
 	BookNode *next;
 
