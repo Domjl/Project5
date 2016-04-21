@@ -2,8 +2,7 @@
 #include "BookNode.h"
 //using namespace _;
 
-class BookNode{
-  BookNode(const string &title, int bookId, double price, int amount, int //BookType booktype)
+  BookNode::BookNode(const string &title, int bookId, double price, int amount, int //BookType booktype)
   {
     this>title = title;
     this>bookId = bookId;
@@ -12,7 +11,7 @@ class BookNode{
     //this>booktype = booktype;
   }
   
-  BookNode()
+  BookNode::BookNode()
   {
     title = "";
     bookId = 0;
@@ -71,4 +70,3 @@ class BookNode{
       << "\nAmount: " << amount;
       //BookType??
   }
-}
