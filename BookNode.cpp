@@ -70,3 +70,9 @@
       << "\nAmount: " << amount;
       //BookType??
   }
+  
+  void BookNode::sold()
+  {
+    amount = amount -1;
+    //return price maybe?
+  }
