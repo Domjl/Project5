@@ -1,0 +1,13 @@
+recursive
+
+sort(node)
+{
+if(node.hasnext)
+if node > sort(node.next)
+swap
+else return node
+}
+ 
+swap()
+{
+}
