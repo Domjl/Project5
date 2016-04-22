@@ -11,3 +11,7 @@ else return node
 swap()
 {
 }
+//==============================
+find min
+add to new list
+//==========================
