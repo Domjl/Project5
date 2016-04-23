@@ -21,7 +21,7 @@ BookNode sort(BookNode *head)
 
 		while(n->next != nullptr)       // while has another node
 		{
-			if(n->next->value < n->value) // if the next node is smaller than the current node
+			if(n->next->getAmount() ? n->getAmount()) // if the next node is smaller than the current node
 			{
 				min = n->next;              // current min is the next node
 				minParent = n;              // current node is the min's parent 
