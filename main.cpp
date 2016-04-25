@@ -111,7 +111,7 @@ void checkOut(CartNode* & node){
         cout<<"SAlE"<<endl;
         while(temp!=NULL){
             cout<<temp->item->getTitle()<<endl;
-            temp->item->chaseOne();
+            temp->item->sold();
             totalprice+=temp->item->getPrice();
             temp=temp->next;
         }
@@ -372,7 +372,7 @@ void destroyCatlog(BookNode* & node){
  * @param *head pass in the current head of the list
  * @return returns the new head of the list.
  */
-BookNode sort(BookNode *head)       
+BookNode * sort(BookNode *head)       
 {
 	BookNode *newhead = nullptr;      // Head to be.
 	BookNode *current = nullptr;      // Position place holder for where in the sorted list we are.
