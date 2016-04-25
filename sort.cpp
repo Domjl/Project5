@@ -16,43 +16,44 @@ BookNode sort(BookNode *head)
 	while(head->next != nullptr)      // repeat until only head remains
 	{
 		BookNode *n = head;             // temp node for looping through
-		BookNode *min = n;              // min node
-		BookNode *minParent = n;        // min node's parent
+		BookNode *max = n;              // max node
+		BookNode *maxParent = n;        // max node's parent
 
 		while(n->next != nullptr)       // while has another node
 		{
-			if(n->next->value < n->value) // if the next node is smaller than the current node
+			if(n->next->getAmount() > n->getAmount()) // if the next node is larger than the current node
 			{
-				min = n->next;              // current min is the next node
-				minParent = n;              // current node is the min's parent 
+				max = n->next;              // current max is the next node
+				maxParent = n;              // current node is the max's parent 
 			}
 		}
 
-                                    // remove the node
-		if(min == head)                 // if min is first element
+                // remove the node - Delink the node from the link and relink the remaining list
+		if(max == head)                 // if max is first element
 		{
 			head = head->next;            // set head to next node
 		}
 		else                            //
 		{
-			minParent->next = min->next;  // min's parent's next == min's next node
+			maxParent->next = max->next;  // max's parent's next == max's next node
 		}
+		max->next = nullptr;            // max's next beocmes null
 		
-		min->next = nullptr;            // min's next beocmes null
+		//Append the cut node to the new list.
 		if(current == nullptr)          // if newhead hasn't beeen set yet
 		{
-		  newhead = min                 // set a starting point
+		  newhead = max;                 // set a starting point
 		  current = newhead;            // safety
 		}
 		else
 		 {
-		   current->next = min;         // next min is the min we found
-		   current = min                // move along in the sorted list
+		   current->next = max;         // next max is the max we found
+		   current = max;                // move along in the sorted list
 		 }
 	}
 
 	current->next = head;             // add the remaining value;
-
+	
 	return newhead;                   // return the new list
 }
 

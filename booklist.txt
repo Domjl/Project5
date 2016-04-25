@@ -1,0 +1,98 @@
+0
+C How to Program
+56
+100
+100
+0
+
+0
+tttt
+14
+30
+0
+0
+
+0
+Monkey King
+12
+8.99
+1
+0
+
+0
+The Girl With No Past: A gripping psychological thriller
+10
+9.17
+3
+0
+
+0
+Python Machine Learning
+9
+40.49
+8
+0
+
+0
+Paris: The Novel
+8
+10.71
+23
+0
+
+0
+TIME
+7
+30
+27
+52
+
+0
+Student Friendly Quantum Field Theory
+6
+67.28
+18
+0
+
+0
+National Geographic Traveler
+5
+10
+36
+6
+
+0
+The Jungle Book 
+4
+7.48
+14
+0
+
+0
+Introduction to Algorithms
+3
+66.32
+12
+0
+
+0
+National Geographic
+2
+19
+28
+12
+
+0
+C++ Early Objects
+1
+89.99
+15
+0
+
+0
+C++
+13
+100
+0
+0
+
