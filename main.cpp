@@ -41,6 +41,9 @@ void add();
 void branching(char c);
 void menu();
 BookNode* sortBooks(BookNode* node);
+String askAuthor();
+int askEdition();
+String askIsbn();
 
 int main()
 {
@@ -314,14 +317,23 @@ void displayCatalog(BookNode* node){
 
 void addToCatalog(string title,int ptype, int id, double price, int amount,  BookNode* node){
     BookNode* aptr=NULL,*ptr=node;
+    String cauthor = "";
+    String cisbn = "";
+    int cedit = "";
+
     if(ptype==0){
-        MagazineNode* newnode= new MagazineNode(title,ptype,id,price,amount);
+    	cnum = askEdition();
+        MagazineNode* newnode= new MagazineNode(cedit, title,ptype,id,price,amount);
         aptr=newnode;
     }else if(ptype==1){
-        FictionNode* newnode= new FictionNode(title,ptype,id,price,amount);
+    	cauthor = askAuthor();
+        FictionNode* newnode= new FictionNode(cauthor, title,ptype,id,price,amount);
         aptr=newnode;
     }else if(ptype==2){
-        TextbookNode* newnode= new TextbookNode(title,ptype,id,price,amount);
+    	cauthor = askAuthor();
+    	cedit = askEdition();
+    	cisbn = askIsbn();
+        TextbookNode* newnode= new TextbookNode(cauthor, cedit, cisbn, title,ptype,id,price,amount);
         aptr=newnode;
     }else{
         cout<<"Invalid input of the type of the book\n";
@@ -331,6 +343,21 @@ void addToCatalog(string title,int ptype, int id, double price, int amount,  Boo
         ptr=ptr->next;
     }
     ptr->next=aptr;
+}
+
+String askAuthor(){
+	cout<<"Enter the author of the book\n";
+	return << cin;
+}
+
+int askEdition(){
+	cout<<"Enter the edition of the book\n";
+	return << cin;
+}
+
+String askIsbn(){
+	cout<<"Enter the isbn of the book\n";
+	return << cin;
 }
 
 
