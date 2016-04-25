@@ -40,6 +40,8 @@ void remove();
 void add();
 void branching(char c);
 void menu();
+BookNode* sortBooks(BookNode* node);
+
 int main()
 {
     char ch;
@@ -120,11 +122,27 @@ void checkOut(CartNode* & node){
         cout<<"Tax:          \t"<<0.09*totalprice<<endl;
         cout<<"Total:        \t"<<(1+0.09)*totalprice<<endl;
         destroyCart(node);
-
     }
 }
 
 void mostPop(BookNode* node){
+
+ int i = 0;
+ BookNode* temp=node;
+    if(!node){
+        cout<<"The catalog is empty!\n";
+        return;
+    }else{
+    	cout << "Head " << head->getTitle() << endl;
+    	head = sortBooks(head);
+    	temp = head;
+        while(temp!=NULL && i<3){
+            temp->display();
+            cout<<endl;
+            temp=temp->next;
+            i++;
+        }
+    }
 }
 
 void menu(){
@@ -135,9 +153,9 @@ void menu(){
     cout<<"r: Remove a book from the catalog."<<endl;
     cout<<"a: Add an item to the shopping cart."<<endl;
     cout<<"c: Checkout your shopping cart."<<endl;
+    cout<<"m: Display the three most popular books."<<endl;
     cout<<"q: Quit the program."<<endl;
     cout<<endl<<"Please your choice(i,d,r,a,c,q)--->"<<endl;
-
 }
 
 void branching(char c){
@@ -147,6 +165,7 @@ void branching(char c){
         case 'r': remove(); break;
         case 'a': add();break;
         case 'c': checkOut(cart);break;
+        case 'm': mostPop(head);break;
         case 'q': cout << endl << "@Exiting the program..............." << endl;
                   cin.get();	//type any key.
                   break;
@@ -164,7 +183,7 @@ void insert(){
     getline(cin,title);
     cout<<"Enter the type of the book\n";
     cout<<"0:Magazine\n";
-    cout<<"1:Ficition\n";
+    cout<<"1:Fiction\n";
     cout<<"2:Textbook\n";
     cin>>type;
     cin.ignore();
@@ -282,6 +301,9 @@ void displayCatalog(BookNode* node){
         cout<<"The catalog is empty!\n";
         return;
     }else{
+    	cout << "Head " << head->getTitle() << endl;
+    	head = sortBooks(head);
+    	temp = head;
         while(temp!=NULL){
             temp->display();
             cout<<endl;
@@ -348,8 +370,6 @@ void removeFromCatalog(BookNode* &node, int bookId){
     }else{
         cout<<"Item not existed!\n";
     }
-
-
 }
 
 void destroyCatlog(BookNode* & node){
@@ -372,7 +392,7 @@ void destroyCatlog(BookNode* & node){
  * @param *head pass in the current head of the list
  * @return returns the new head of the list.
  */
-BookNode * sort(BookNode *head)       
+BookNode* sortBooks(BookNode *head)       
 {
 	BookNode *newhead = nullptr;      // Head to be.
 	BookNode *current = nullptr;      // Position place holder for where in the sorted list we are.
@@ -380,19 +400,19 @@ BookNode * sort(BookNode *head)
 	while(head->next != nullptr)      // repeat until only head remains
 	{
 		BookNode *n = head;             // temp node for looping through
-		BookNode *max = n;              // max node
+		BookNode *max = head;              // max node
 		BookNode *maxParent = n;        // max node's parent
-
 		while(n->next != nullptr)       // while has another node
 		{
-			if(n->next->getAmount() > n->getAmount()) // if the next node is larger than the current node
+			if(n->next->getAmount() > max->getAmount()) // if the next node is larger than the current node
 			{
 				max = n->next;              // current max is the next node
 				maxParent = n;              // current node is the max's parent 
 			}
+			n = n->next;
 		}
 
-                // remove the node - Delink the node from the link and relink the remaining list
+        // remove the node - Delink the node from the link and relink the remaining list
 		if(max == head)                 // if max is first element
 		{
 			head = head->next;            // set head to next node
@@ -418,7 +438,6 @@ BookNode * sort(BookNode *head)
 		 /**
 		  *  catch. if(current->next != nullptr) throw error;
 		  */
-		  
 	}
 
 	current->next = head;             // add the remaining value;

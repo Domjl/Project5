@@ -10,10 +10,8 @@ booknode.o: booknode.cpp booknode.h
 fiction.o: fiction.cpp fiction.h
 	g++ -c $<
 
-
 magazine.o: magazine.cpp magazine.h
 	g++ -c $<
-
 
 textbook.o: textbook.cpp textbook.h
 	g++ -c $<

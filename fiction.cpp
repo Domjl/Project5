@@ -26,7 +26,7 @@ void FictionNode::display(){
         cout<<"Author:  \t"<<getAuthor()<<endl;
 }
 
-type FictionNodee::getBookType() const{
+type FictionNode::getBookType() const{
         return this->btype;
 }
 void FictionNode::setBookType(int ptype){

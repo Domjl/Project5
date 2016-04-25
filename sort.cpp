@@ -8,7 +8,7 @@
  * @author Dominic :P
  * @version 0.5 4/22/16
  */
-BookNode sort(BookNode *head)       
+BookNode sortBooks(BookNode *head)       
 {
 	BookNode *newhead = nullptr;      // Head to be.
 	BookNode *current = nullptr;      // Position place holder for where in the sorted list we are.
