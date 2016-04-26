@@ -41,9 +41,9 @@ void add();
 void branching(char c);
 void menu();
 BookNode* sortBooks(BookNode* node);
-String askAuthor();
+string askAuthor();
 int askEdition();
-String askIsbn();
+string askIsbn();
 
 int main()
 {
@@ -317,23 +317,23 @@ void displayCatalog(BookNode* node){
 
 void addToCatalog(string title,int ptype, int id, double price, int amount,  BookNode* node){
     BookNode* aptr=NULL,*ptr=node;
-    String cauthor = "";
-    String cisbn = "";
-    int cedit = "";
+    //String cauthor = "";
+    //String cisbn = "";
+    //int cedit = "";
 
     if(ptype==0){
-    	cnum = askEdition();
-        MagazineNode* newnode= new MagazineNode(cedit, title,ptype,id,price,amount);
+    	//cnum = askEdition();
+        MagazineNode* newnode= new MagazineNode(askEdition(), title,ptype,id,price,amount);
         aptr=newnode;
     }else if(ptype==1){
-    	cauthor = askAuthor();
-        FictionNode* newnode= new FictionNode(cauthor, title,ptype,id,price,amount);
+    	//cauthor = askAuthor();
+        FictionNode* newnode= new FictionNode(askAuthor(), title,ptype,id,price,amount);
         aptr=newnode;
     }else if(ptype==2){
-    	cauthor = askAuthor();
-    	cedit = askEdition();
-    	cisbn = askIsbn();
-        TextbookNode* newnode= new TextbookNode(cauthor, cedit, cisbn, title,ptype,id,price,amount);
+    	//cauthor = askAuthor();
+    	//cedit = askEdition();
+    	//cisbn = askIsbn();
+        TextbookNode* newnode= new TextbookNode(askAuthor(), askEdition(), askIsbn(), title,ptype,id,price,amount);
         aptr=newnode;
     }else{
         cout<<"Invalid input of the type of the book\n";
@@ -346,21 +346,27 @@ void addToCatalog(string title,int ptype, int id, double price, int amount,  Boo
 }
 
 //ask for input of Author.. used for redability.
-String askAuthor(){
+string askAuthor(){
+	String temp = "";
 	cout<<"Enter the author of the book\n";
-	return << cin;
+	cin >> temp;
+	return temp;
 }
 
 //ask for input of Edition.. used for redability.
 int askEdition(){
+	int temp = 0;
 	cout<<"Enter the edition of the book\n";
-	return << cin;
+	cin >> temp;
+	return temp;
 }
 
 //ask for input of ISBN.. used for redability.
-String askIsbn(){
+string askIsbn(){
+	String temp = "";
 	cout<<"Enter the isbn of the book\n";
-	return << cin;
+	cin >> temp;
+	return temp;
 }
 
 //Search for a BookNode in the list given BookID
