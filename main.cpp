@@ -41,9 +41,6 @@ void add();
 void branching(char c);
 void menu();
 BookNode* sortBooks(BookNode* node);
-String askAuthor();
-int askEdition();
-String askIsbn();
 
 int main()
 {
@@ -136,7 +133,6 @@ void mostPop(BookNode* node){
         cout<<"The catalog is empty!\n";
         return;
     }else{
-    	cout << "Head " << head->getTitle() << endl;
     	head = sortBooks(head);
     	temp = head;
         while(temp!=NULL && i<3){
@@ -304,7 +300,6 @@ void displayCatalog(BookNode* node){
         cout<<"The catalog is empty!\n";
         return;
     }else{
-    	cout << "Head " << head->getTitle() << endl;
     	head = sortBooks(head);
     	temp = head;
         while(temp!=NULL){
@@ -317,23 +312,14 @@ void displayCatalog(BookNode* node){
 
 void addToCatalog(string title,int ptype, int id, double price, int amount,  BookNode* node){
     BookNode* aptr=NULL,*ptr=node;
-    String cauthor = "";
-    String cisbn = "";
-    int cedit = "";
-
     if(ptype==0){
-    	cnum = askEdition();
-        MagazineNode* newnode= new MagazineNode(cedit, title,ptype,id,price,amount);
+        MagazineNode* newnode= new MagazineNode(title,ptype,id,price,amount);
         aptr=newnode;
     }else if(ptype==1){
-    	cauthor = askAuthor();
-        FictionNode* newnode= new FictionNode(cauthor, title,ptype,id,price,amount);
+        FictionNode* newnode= new FictionNode(title,ptype,id,price,amount);
         aptr=newnode;
     }else if(ptype==2){
-    	cauthor = askAuthor();
-    	cedit = askEdition();
-    	cisbn = askIsbn();
-        TextbookNode* newnode= new TextbookNode(cauthor, cedit, cisbn, title,ptype,id,price,amount);
+        TextbookNode* newnode= new TextbookNode(title,ptype,id,price,amount);
         aptr=newnode;
     }else{
         cout<<"Invalid input of the type of the book\n";
@@ -345,29 +331,10 @@ void addToCatalog(string title,int ptype, int id, double price, int amount,  Boo
     ptr->next=aptr;
 }
 
-//ask for input of Author.. used for redability.
-String askAuthor(){
-	cout<<"Enter the author of the book\n";
-	return << cin;
-}
 
-//ask for input of Edition.. used for redability.
-int askEdition(){
-	cout<<"Enter the edition of the book\n";
-	return << cin;
-}
-
-//ask for input of ISBN.. used for redability.
-String askIsbn(){
-	cout<<"Enter the isbn of the book\n";
-	return << cin;
-}
-
-//Search for a BookNode in the list given BookID
 BookNode* search(BookNode* node, int bookId){
-    if(node==NULL) return NULL; //if null, return null.
+    if(node==NULL) return NULL;
     BookNode* & ptr=node;
-    //Loop through until BookID = bookID we are looking for.
     while(ptr != NULL && ptr->getBookId()!=bookId){
         ptr=ptr->next;
     }
@@ -403,12 +370,10 @@ void removeFromCatalog(BookNode* &node, int bookId){
     }
 }
 
-//Destroy all node's in provided LinkedList
 void destroyCatlog(BookNode* & node){
     if(!node)  return;
     else{
         BookNode* temp=node;
-        //Delete current node and move onto the next until end.
         while(temp!=NULL){
             temp=temp->next;
             delete node;
@@ -419,8 +384,8 @@ void destroyCatlog(BookNode* & node){
 }
 
 /**
- * Purpose: Sort the LinkedList based off getAmount.
- * with comments.. 
+ * Purpose: sort.. that I believe based on my understanding of c++ will work.
+ * with comments.. :D
  * 
  * @param *head pass in the current head of the list
  * @return returns the new head of the list.
@@ -467,7 +432,14 @@ BookNode* sortBooks(BookNode *head)
 		   current->next = max;         // next max is the max we found
 		   current = max;                // move along in the sorted list
 		 }
+		 
+		 /**
+		  *  catch. if(current->next != nullptr) throw error;
+		  */
 	}
+
 	current->next = head;             // add the remaining value;
+	//current = nullptr; 		 // might break things, my attempt to deallocate the "current" pointer.
+	
 	return newhead;                   // return the new list
 }
